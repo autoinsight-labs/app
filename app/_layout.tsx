@@ -1,6 +1,7 @@
 import '@/global.css'
 import { useColorScheme } from '@/lib/use-color-scheme'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import {
   DarkTheme,
   DefaultTheme,
@@ -28,7 +29,7 @@ export { ErrorBoundary } from 'expo-router'
 
 export default function RootLayout() {
   const hasMounted = useRef(false)
-  const { isDarkColorScheme } = useColorScheme()
+  const { setColorScheme, isDarkColorScheme } = useColorScheme()
   const [isColorSchemeLoaded, setIsColorSchemeLoaded] = useState(false)
 
   useIsomorphicLayoutEffect(() => {
@@ -36,13 +37,26 @@ export default function RootLayout() {
       return
     }
 
+    async function loadTheme() {
+      const themeStorageKey = 'preferred-theme'
+      const storedTheme = await AsyncStorage.getItem(themeStorageKey)
+      if (
+        storedTheme === 'light' ||
+        storedTheme === 'dark' ||
+        storedTheme === 'system'
+      ) {
+        setColorScheme(storedTheme)
+      }
+      setIsColorSchemeLoaded(true)
+    }
+
     if (Platform.OS === 'web') {
-      // Adds the background color to the html element to prevent white background on overscroll.
       document.documentElement.classList.add('bg-background')
     }
-    setIsColorSchemeLoaded(true)
+
+    loadTheme()
     hasMounted.current = true
-  }, [])
+  }, [setColorScheme])
 
   if (!isColorSchemeLoaded) {
     return null
