@@ -6,7 +6,7 @@ import { Moon, Sun } from 'lucide-react-native'
 import { useEffect } from 'react'
 import { View } from 'react-native'
 
-export default function TabTwoScreen() {
+export default function Settings() {
   const { colorScheme, setColorScheme } = useColorScheme()
 
   const themeStorageKey = 'preferred-theme'
