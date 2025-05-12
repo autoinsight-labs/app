@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button'
-import { Text } from '@/components/ui/text'
 import { useColorScheme } from '@/lib/use-color-scheme'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Moon, Sun } from 'lucide-react-native'
 import { useEffect } from 'react'
 import { View } from 'react-native'
+import { SettingsHeader } from './components/settings-header'
 
 export default function Settings() {
   const { colorScheme, setColorScheme } = useColorScheme()
@@ -32,7 +32,7 @@ export default function Settings() {
 
   return (
     <View className="flex-1 gap-4 items-center justify-center p-4">
-      <Text className="text-xl font-bold">Settings</Text>
+      <SettingsHeader />
       <Button
         onPress={() => updateTheme(colorScheme === 'dark' ? 'light' : 'dark')}
         variant="ghost"
