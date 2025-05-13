@@ -110,35 +110,40 @@ export function ThemeChanger() {
         }}
         backdropComponent={renderBackdrop}
       >
-        <BottomSheetView className="flex flex-col items-center justify-center gap-4 px-6 py-4 pb-10">
-          {themes.map(theme => {
-            const isSelected = theme.key === selected
-            return (
-              <Pressable
-                key={theme.key}
-                onPress={() => handleSelect(theme.key)}
-                className="w-full"
-                disabled={isSelected}
-                style={isSelected ? { opacity: 0.5 } : undefined}
-              >
-                <Card className="w-full">
-                  <CardContent className="flex flex-row w-full items-center gap-3 px-6 py-3">
-                    {theme.icon}
-                    <Text className="text-lg font-medium flex-1">
-                      {theme.label}
-                    </Text>
-                    {isSelected && (
-                      <Check
-                        size={20}
-                        strokeWidth={2.5}
-                        color={Colors[colorScheme].tabIconDefault}
-                      />
-                    )}
-                  </CardContent>
-                </Card>
-              </Pressable>
-            )
-          })}
+        <BottomSheetView className="flex flex-col justify-center gap-4 px-6 py-4 pb-10">
+          <View className="flex flex-col gap-4 w-full">
+            <Text className="text-xl font-semibold">Selecionar tema</Text>
+            <View className="flex flex-col w-full gap-4">
+              {themes.map(theme => {
+                const isSelected = theme.key === selected
+                return (
+                  <Pressable
+                    key={theme.key}
+                    onPress={() => handleSelect(theme.key)}
+                    className="w-full"
+                    disabled={isSelected}
+                    style={isSelected ? { opacity: 0.5 } : undefined}
+                  >
+                    <Card className="w-full">
+                      <CardContent className="flex flex-row w-full items-center gap-3 px-6 py-3">
+                        {theme.icon}
+                        <Text className="text-lg font-medium flex-1">
+                          {theme.label}
+                        </Text>
+                        {isSelected && (
+                          <Check
+                            size={20}
+                            strokeWidth={2.5}
+                            color={Colors[colorScheme].tabIconDefault}
+                          />
+                        )}
+                      </CardContent>
+                    </Card>
+                  </Pressable>
+                )
+              })}
+            </View>
+          </View>
         </BottomSheetView>
       </BottomSheetModal>
     </>

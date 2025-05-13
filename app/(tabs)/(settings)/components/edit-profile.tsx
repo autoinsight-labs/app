@@ -95,7 +95,8 @@ export function EditProfile({ onSave }: EditProfileProps) {
         backdropComponent={renderBackdrop}
       >
         <BottomSheetView className="flex flex-col items-center justify-center gap-4 px-6 py-4 pb-10">
-          <View className="flex flex-col gap-4 px-6 w-full">
+          <View className="flex flex-col gap-4 w-full">
+            <Text className="text-xl font-semibold">Editar perfil</Text>
             <View className="flex flex-col w-full">
               <Controller
                 name="name"
