@@ -1,8 +1,10 @@
+import { Text } from '@/components/ui/text'
 import { useState } from 'react'
 import { View } from 'react-native'
 import { EditProfile } from './components/edit-profile'
 import { SettingsHeader } from './components/settings-header'
 import { ThemeChanger } from './components/theme-changer'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Settings() {
   const [profile, setProfile] = useState({
@@ -11,10 +13,19 @@ export default function Settings() {
   })
 
   return (
-    <View className="flex-1 gap-4 items-center justify-center p-4">
+    <SafeAreaView className="flex-1 gap-8 items-center justify-center">
       <SettingsHeader name={profile.name} email={profile.email} />
-      <ThemeChanger />
-      <EditProfile onSave={setProfile} />
-    </View>
+      <View className="flex-1 w-full gap-8">
+        <View className="flex flex-col w-full gap-2 px-6">
+          <Text className="font-medium text-muted-foreground">Usuário</Text>
+          <EditProfile onSave={setProfile} />
+        </View>
+
+        <View className="flex flex-col w-full gap-2 px-6">
+          <Text className="font-medium text-muted-foreground">Sistema</Text>
+          <ThemeChanger />
+        </View>
+      </View>
+    </SafeAreaView>
   )
 }

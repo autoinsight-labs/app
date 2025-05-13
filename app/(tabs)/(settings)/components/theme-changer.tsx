@@ -88,7 +88,7 @@ export function ThemeChanger() {
   return (
     <>
       <Pressable onPress={handlePresentModalPress} className="w-full">
-        <View className="flex flex-row items-center justify-between w-full px-6 py-2">
+        <View className="flex flex-row items-center justify-between w-full">
           <View className="flex flex-row items-center gap-4">
             <View className="p-3 rounded-2xl bg-input">
               <Palette color={Colors[colorScheme].text} size={20} />
