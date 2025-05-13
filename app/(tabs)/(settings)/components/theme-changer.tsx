@@ -91,11 +91,11 @@ export function ThemeChanger() {
         <View className="flex flex-row items-center justify-between w-full px-6 py-2">
           <View className="flex flex-row items-center gap-4">
             <View className="p-3 rounded-2xl bg-input">
-              <Palette color={Colors[colorScheme].text} />
+              <Palette color={Colors[colorScheme].text} size={20} />
             </View>
-            <Text className="text-2xl">Tema</Text>
+            <Text className="text-xl">Tema</Text>
           </View>
-          <Settings2 color={Colors[colorScheme].text} />
+          <Settings2 color={Colors[colorScheme].text} size={20} />
         </View>
       </Pressable>
       <BottomSheetModal
