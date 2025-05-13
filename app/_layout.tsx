@@ -1,3 +1,4 @@
+import Colors from '@/constants/Colors'
 import '@/global.css'
 import { useColorScheme } from '@/lib/use-color-scheme'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
@@ -14,15 +15,14 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Platform } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { Toaster } from 'sonner-native'
-import { NAV_THEME } from '~/lib/constants'
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
-  colors: NAV_THEME.light,
+  colors: Colors.light,
 }
 const DARK_THEME: Theme = {
   ...DarkTheme,
-  colors: NAV_THEME.dark,
+  colors: Colors.dark,
 }
 
 export { ErrorBoundary } from 'expo-router'
