@@ -1,3 +1,6 @@
+import { type ClassValue, clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+
 export function toCapital(input: string) {
   const words = input.match(/[A-Za-z][a-z]*/g) || []
 
@@ -21,4 +24,8 @@ export function getInitials(name: string) {
   const firstInitial = nameParts[0].charAt(0).toUpperCase()
   const lastInitial = nameParts[nameParts.length - 1].charAt(0).toUpperCase()
   return `${firstInitial}${lastInitial}`
+}
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }

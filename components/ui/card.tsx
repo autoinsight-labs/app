@@ -1,5 +1,5 @@
 import { TextClassContext } from '@/components/ui/text'
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/utils'
 import type { TextRef, ViewRef } from '@rn-primitives/types'
 import * as React from 'react'
 import { Text, type TextProps, View, type ViewProps } from 'react-native'
