@@ -18,7 +18,7 @@ export function SettingsHeader({ name, email }: SettingsHeaderProps) {
         </AvatarFallback>
       </Avatar>
       <View className="flex flex-col w-full gap-1 items-center">
-        <Text className="text-2xl font-semibold">{name}</Text>
+        <Text className="text-2xl font-semibold text-center">{name}</Text>
         <Text className="text-lg text-muted-foreground">{email}</Text>
       </View>
     </View>
