@@ -11,16 +11,12 @@ import {
 } from '@gorhom/bottom-sheet'
 import type { BottomSheetDefaultBackdropProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Settings2, User2 } from 'lucide-react-native'
-import { useCallback, useRef } from 'react'
+import { ChevronRight } from 'lucide-react-native'
+import { useCallback, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Pressable, View } from 'react-native'
+import { Image, Pressable, View } from 'react-native'
 import { toast } from 'sonner-native'
 import { z } from 'zod'
-
-interface EditProfileProps {
-  onSave?: (data: EditProfileSchema) => void
-}
 
 const editProfileSchema = z.object({
   name: z
@@ -35,9 +31,14 @@ const editProfileSchema = z.object({
 
 type EditProfileSchema = z.infer<typeof editProfileSchema>
 
-export function EditProfile({ onSave }: EditProfileProps) {
+export function EditProfile() {
   const { colorScheme } = useColorScheme()
   const bottomSheetModalRef = useRef<BottomSheetModal>(null)
+
+  const [profile, setProfile] = useState({
+    name: 'Guilherme Maggiorini',
+    email: 'guimaggiorini@gmail.com',
+  })
 
   const { control, handleSubmit, reset } = useForm<EditProfileSchema>({
     resolver: zodResolver(editProfileSchema),
@@ -49,7 +50,7 @@ export function EditProfile({ onSave }: EditProfileProps) {
 
   function onSubmit(data: EditProfileSchema) {
     toast.success('Perfil atualizado!')
-    onSave?.(data)
+    setProfile(data)
     bottomSheetModalRef.current?.dismiss()
   }
 
@@ -72,14 +73,22 @@ export function EditProfile({ onSave }: EditProfileProps) {
   return (
     <>
       <Pressable onPress={handlePresentModalPress} className="w-full">
-        <View className="flex flex-row items-center justify-between w-full">
-          <View className="flex flex-row items-center gap-4">
-            <View className="p-3 rounded-2xl bg-input">
-              <User2 color={Colors[colorScheme].text} size={20} />
+        <View className="flex-row w-full items-center justify-between gap-3 bg-muted p-5 rounded-2xl">
+          <View className="flex-row items-center gap-3">
+            <Image
+              source={require('@/assets/unknown-user.jpg')}
+              className="size-16 rounded-full"
+            />
+            <View className="flex flex-col">
+              <Text className="text-xl font-semibold leading-none">
+                {profile.name}
+              </Text>
+              <Text className="text-muted-foreground leading-1">
+                {profile.email}
+              </Text>
             </View>
-            <Text className="text-xl">Editar perfil</Text>
           </View>
-          <Settings2 color={Colors[colorScheme].text} size={20} />
+          <ChevronRight color={Colors[colorScheme].text} size={24} />
         </View>
       </Pressable>
       <BottomSheetModal
