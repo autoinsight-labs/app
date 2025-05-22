@@ -27,7 +27,7 @@ export default function Home() {
             className="w-full h-full"
           />
           <View
-            className={`absolute inset-0 ${colorScheme === 'dark' ? 'bg-black/20' : 'bg-black/15'}`}
+            className={`absolute inset-0 ${colorScheme === 'dark' ? 'bg-black/20' : 'bg-black/10'}`}
           />
         </View>
         <View className="flex-row items-center justify-between absolute bottom-4 bg-card p-4 rounded-2xl w-[90%]">
@@ -58,15 +58,15 @@ export default function Home() {
           </Badge>
         </View>
 
-        <View className="gap-1">
+        <View>
           <Text className="font-medium text-muted-foreground">Responsável</Text>
-          <View className="flex-row items-center gap-3 bg-muted px-5 py-4 rounded-2xl">
+          <View className="flex-row items-center gap-3 px-5 py-4">
             <Image
               source={require('@/assets/unknown-user.jpg')}
               className="size-14 rounded-full"
             />
             <View className="flex flex-col">
-              <Text className="text-xl font-semibold leading-none">
+              <Text className="text-xl font-medium leading-none">
                 Arthur Mariano
               </Text>
               <Text className="text-muted-foreground leading-1">
@@ -76,25 +76,23 @@ export default function Home() {
           </View>
         </View>
 
-        <View className="gap-1">
+        <View>
           <Text className="font-medium text-muted-foreground">
             Moto em serviço
           </Text>
-          <View className="flex-row items-center gap-3 bg-muted px-5 py-4 rounded-2xl">
+          <View className="flex-row items-center gap-3 px-5 py-4">
             <Image
               source={require('@/assets/bikes/E.webp')}
               className="size-14 rounded-full"
             />
             <View className="flex flex-col">
-              <Text className="text-xl font-semibold leading-none">
-                Mottu E
-              </Text>
+              <Text className="text-xl font-medium leading-none">Mottu E</Text>
               <Text className="text-muted-foreground leading-1">ABC1D23</Text>
             </View>
           </View>
         </View>
 
-        <View className="flex flex-row gap-4">
+        <View className="flex flex-row gap-4 mt-auto">
           <Button
             className="flex-1 flex-row items-center justify-center gap-2"
             variant="destructive"
