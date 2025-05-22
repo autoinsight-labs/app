@@ -87,7 +87,7 @@ export function Developers() {
               {developers.map(developer => {
                 return (
                   <View key={developer.name} className="w-full">
-                    <View className="flex flex-row items-center justify-between w-full p-4 rounded-2xl bg-card">
+                    <View className="flex flex-row items-center justify-between w-full p-4 rounded-2xl">
                       <View className="flex flex-row items-center gap-2">
                         <View className="flex flex-row items-center">
                           <View className="size-14 rounded-full overflow-hidden">

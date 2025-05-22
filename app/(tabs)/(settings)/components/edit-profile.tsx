@@ -73,7 +73,7 @@ export function EditProfile() {
   return (
     <>
       <Pressable onPress={handlePresentModalPress} className="w-full">
-        <View className="flex-row w-full items-center justify-between gap-3 bg-muted p-5 rounded-2xl">
+        <View className="flex-row w-full items-center justify-between gap-3 bg-muted px-5 py-4 rounded-2xl">
           <View className="flex-row items-center gap-3">
             <Image
               source={require('@/assets/unknown-user.jpg')}
