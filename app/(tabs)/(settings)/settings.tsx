@@ -13,7 +13,6 @@ export default function Settings() {
       </View>
       <View className="flex-1 w-full gap-8">
         <View className="flex flex-col w-full gap-2">
-          <Text className="font-medium text-muted-foreground">Usuário</Text>
           <EditProfile />
         </View>
 
