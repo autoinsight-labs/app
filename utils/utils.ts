@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from 'clsx'
+import { Linking, Platform } from 'react-native'
 import { twMerge } from 'tailwind-merge'
 
 export function toCapital(input: string) {
@@ -28,4 +29,24 @@ export function getInitials(name: string) {
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
+}
+
+export function openMaps(address: string) {
+  const encodedAddress = encodeURIComponent(address)
+
+  const url = Platform.select({
+    ios: `maps:0,0?q=${encodedAddress}`,
+    android: `geo:0,0?q=${encodedAddress}`,
+    default: `https://maps.google.com/?q=${encodedAddress}`,
+  })
+
+  Linking.canOpenURL(url)
+    .then(supported => {
+      if (supported) {
+        return Linking.openURL(url)
+      }
+
+      return Linking.openURL(`https://maps.google.com/?q=${encodedAddress}`)
+    })
+    .catch(err => console.error('Erro ao abrir mapa:', err))
 }
