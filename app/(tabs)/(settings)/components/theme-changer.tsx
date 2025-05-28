@@ -19,6 +19,7 @@ import {
 } from 'lucide-react-native'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Pressable, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const themes = [
   {
@@ -110,8 +111,11 @@ export function ThemeChanger() {
         }}
         backdropComponent={renderBackdrop}
       >
-        <BottomSheetView className="flex flex-col justify-center gap-4 px-6 py-4 pb-10">
-          <View className="flex flex-col gap-4 w-full">
+        <BottomSheetView className="flex flex-col justify-center gap-4 px-6">
+          <SafeAreaView
+            className="flex flex-col gap-4 w-full"
+            edges={['bottom']}
+          >
             <Text className="text-xl font-semibold">Selecionar tema</Text>
             <View className="flex flex-col w-full gap-4">
               {themes.map(theme => {
@@ -143,7 +147,7 @@ export function ThemeChanger() {
                 )
               })}
             </View>
-          </View>
+          </SafeAreaView>
         </BottomSheetView>
       </BottomSheetModal>
     </>
