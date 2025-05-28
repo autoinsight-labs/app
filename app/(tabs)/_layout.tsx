@@ -26,7 +26,6 @@ export default function TabLayout() {
         options={{
           title: 'Início',
           tabBarIcon: ({ color }) => <Home color={color} className="size-5" />,
-          tabBarStyle: { marginBottom: -10 },
         }}
       />
       <Tabs.Screen
@@ -36,7 +35,6 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <Settings color={color} className="size-5" />
           ),
-          tabBarStyle: { marginBottom: -10 },
         }}
       />
     </Tabs>
