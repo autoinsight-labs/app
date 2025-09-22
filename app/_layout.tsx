@@ -1,5 +1,6 @@
 import Colors from '@/constants/Colors'
 import '@/global.css'
+import { AuthProvider } from '@/lib/contexts/auth'
 import { useColorScheme } from '@/lib/use-color-scheme'
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -65,15 +66,17 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView>
       <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-        <BottomSheetModalProvider>
-          <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
-          <Stack screenOptions={{ headerShown: false }} />
-          <Toaster
-            position="top-center"
-            theme={isDarkColorScheme ? 'dark' : 'light'}
-            richColors
-          />
-        </BottomSheetModalProvider>
+        <AuthProvider>
+          <BottomSheetModalProvider>
+            <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
+            <Stack screenOptions={{ headerShown: false }} />
+            <Toaster
+              position="top-center"
+              theme={isDarkColorScheme ? 'dark' : 'light'}
+              richColors
+            />
+          </BottomSheetModalProvider>
+        </AuthProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
   )
