@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Developers } from './components/developers'
 import { EditProfile } from './components/edit-profile'
+import { Logout } from './components/logout'
 import { ThemeChanger } from './components/theme-changer'
 
 export default function Settings() {
@@ -24,6 +25,13 @@ export default function Settings() {
         <View className="flex flex-col w-full gap-2">
           <Text className="font-medium text-muted-foreground">Sobre</Text>
           <Developers />
+        </View>
+
+        <View className="flex flex-col w-full gap-2">
+          <Text className="font-medium text-muted-foreground">Conta</Text>
+          <View className="flex flex-col gap-3">
+            <Logout />
+          </View>
         </View>
       </View>
     </SafeAreaView>
