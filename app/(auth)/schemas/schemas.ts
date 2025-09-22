@@ -6,11 +6,7 @@ export const loginSchema = z.object({
     .min(1, 'E-mail é obrigatório')
     .email('E-mail deve ser válido')
     .max(150, 'E-mail deve ter no máximo 150 caracteres'),
-  password: z
-    .string()
-    .min(1, 'Senha é obrigatória')
-    .min(6, 'Senha deve ter pelo menos 6 caracteres')
-    .max(50, 'Senha deve ter no máximo 50 caracteres'),
+  password: z.string().min(1, 'Senha é obrigatória'),
 })
 
 export const signupSchema = z.object({
