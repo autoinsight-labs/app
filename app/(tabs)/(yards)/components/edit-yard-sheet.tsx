@@ -35,10 +35,10 @@ export const EditYardSheet = forwardRef<EditYardSheetRef, EditYardSheetProps>(
   ({ yardId, onUpdated }, ref) => {
     const { colorScheme } = useColorScheme()
     const bottomSheetModalRef = useRef<BottomSheetModal>(null)
-  const [yard, setYard] = useState<Yard | null>(null)
-  const [loading, setLoading] = useState(false)
+    const [yard, setYard] = useState<Yard | null>(null)
+    const [loading, setLoading] = useState(false)
 
-  const snapPoints = useMemo(() => ['85%'], [])
+    const snapPoints = useMemo(() => ['85%'], [])
 
     const fetchYard = useCallback(async () => {
       try {
@@ -64,7 +64,11 @@ export const EditYardSheet = forwardRef<EditYardSheetRef, EditYardSheetProps>(
 
     const renderBackdrop = useCallback(
       (props: BottomSheetDefaultBackdropProps) => (
-        <BottomSheetBackdrop {...props} disappearsOnIndex={-1} appearsOnIndex={0} />
+        <BottomSheetBackdrop
+          {...props}
+          disappearsOnIndex={-1}
+          appearsOnIndex={0}
+        />
       ),
       []
     )

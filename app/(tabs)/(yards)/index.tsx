@@ -9,22 +9,27 @@ import {
   rejectInvite,
 } from '@/lib/services/invites'
 import { listYardEmployees } from '@/lib/services/yard-employees'
-import { deleteYard, getYard, listYards } from '@/lib/services/yards'
+import { getYard, listYards } from '@/lib/services/yards'
 import type { EmployeeInvite, Yard, YardEmployee } from '@/lib/types'
 import { cn, getInitials } from '@/utils/utils'
-import { Link } from 'expo-router'
 import { Check, Pencil, Trash2, UserPlus, X } from 'lucide-react-native'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { ActivityIndicator, FlatList, Pressable, ScrollView, View } from 'react-native'
+import {
+  ActivityIndicator,
+  FlatList,
+  Pressable,
+  ScrollView,
+  View,
+} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { toast } from 'sonner-native'
-import { CreateYardSheet } from './components/create-yard-sheet'
 import type { CreateYardSheetRef } from './components/create-yard-sheet'
+import { CreateYardSheet } from './components/create-yard-sheet'
 import { DeleteYardSheet } from './components/delete-yard-sheet'
-import { EditYardSheet } from './components/edit-yard-sheet'
 import type { EditYardSheetRef } from './components/edit-yard-sheet'
-import { InviteUserSheet } from './components/invite-user-sheet'
+import { EditYardSheet } from './components/edit-yard-sheet'
 import type { InviteUserSheetRef } from './components/invite-user-sheet'
+import { InviteUserSheet } from './components/invite-user-sheet'
 
 function Skeleton({ className }: { className?: string }) {
   return (
@@ -254,7 +259,10 @@ export default function YardsEntryScreen() {
     }
   }
 
-  const deleteSheetRef = useRef<{ open: (id: string) => void; close: () => void } | null>(null)
+  const deleteSheetRef = useRef<{
+    open: (id: string) => void
+    close: () => void
+  } | null>(null)
   const openDelete = () => {
     if (!yard) return
     deleteSheetRef.current?.open(yard.id)
@@ -298,12 +306,7 @@ export default function YardsEntryScreen() {
               noInvites && 'flex-1 justify-center items-center'
             )}
           >
-            <View
-              className={cn(
-                'items-center',
-                noInvites && 'justify-center'
-              )}
-            >
+            <View className={cn('items-center', noInvites && 'justify-center')}>
               <Text className="text-xl font-semibold">
                 Nenhum pátio encontrado.
               </Text>
@@ -311,7 +314,10 @@ export default function YardsEntryScreen() {
                 Crie um pátio para começar a gerenciar sua operação
                 {personalInvites.length > 0 && ' ou aceite um convite abaixo.'}
               </Text>
-              <Button className="mt-4" onPress={() => createSheetRef.current?.open()}>
+              <Button
+                className="mt-4"
+                onPress={() => createSheetRef.current?.open()}
+              >
                 <Text className="text-primary-foreground">Criar pátio</Text>
               </Button>
             </View>
@@ -418,7 +424,8 @@ export default function YardsEntryScreen() {
                 {yard.address.neighborhood}
               </Text>
               <Text className="text-muted-foreground mt-1">
-                {yard.address.city} - {yard.address.state} • {yard.address.zipCode}
+                {yard.address.city} - {yard.address.state} •{' '}
+                {yard.address.zipCode}
               </Text>
             </View>
             {isAdmin && (

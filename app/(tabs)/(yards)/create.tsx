@@ -1,6 +1,9 @@
 import { useRouter } from 'expo-router'
 import React, { useEffect, useRef } from 'react'
-import { CreateYardSheet, type CreateYardSheetRef } from './components/create-yard-sheet'
+import {
+  CreateYardSheet,
+  type CreateYardSheetRef,
+} from './components/create-yard-sheet'
 
 export default function CreateYardScreen() {
   const router = useRouter()
@@ -14,7 +17,10 @@ export default function CreateYardScreen() {
     <CreateYardSheet
       ref={ref}
       onCreated={created => {
-        router.replace({ pathname: '/(tabs)/(yards)', params: { id: created.id } })
+        router.replace({
+          pathname: '/(tabs)/(yards)',
+          params: { id: created.id },
+        })
       }}
     />
   )
