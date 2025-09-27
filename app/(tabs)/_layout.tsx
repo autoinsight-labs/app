@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router'
-import { Home, Settings } from 'lucide-react-native'
+import { Building2, Home, Settings } from 'lucide-react-native'
 
 import { AuthGuard } from '@/components/auth-guard'
 import Colors from '@/constants/Colors'
@@ -24,6 +24,15 @@ export default function TabLayout() {
             title: 'Início',
             tabBarIcon: ({ color }) => (
               <Home color={color} className="size-5" />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="(yards)"
+          options={{
+            title: 'Pátio',
+            tabBarIcon: ({ color }) => (
+              <Building2 color={color} className="size-5" />
             ),
           }}
         />
