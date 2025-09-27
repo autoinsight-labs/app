@@ -16,6 +16,7 @@ import { ChevronRight } from 'lucide-react-native'
 import { useCallback, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { Image, Pressable, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { toast } from 'sonner-native'
 import { z } from 'zod'
 
@@ -113,7 +114,10 @@ export function EditProfile() {
         backdropComponent={renderBackdrop}
       >
         <BottomSheetView className="flex flex-col items-center justify-center gap-4 px-6 py-4 pb-10">
-          <View className="flex flex-col gap-4 w-full">
+          <SafeAreaView
+            className="flex flex-col gap-4 w-full"
+            edges={['bottom']}
+          >
             <Text className="text-xl font-semibold">Editar perfil</Text>
             <View className="flex flex-col w-full">
               <Controller
@@ -162,7 +166,7 @@ export function EditProfile() {
             <Button onPress={handleSubmit(onSubmit)}>
               <Text>Salvar</Text>
             </Button>
-          </View>
+          </SafeAreaView>
         </BottomSheetView>
       </BottomSheetModal>
     </>

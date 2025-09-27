@@ -4,9 +4,11 @@ import { Building2, Home, Settings } from 'lucide-react-native'
 import { AuthGuard } from '@/components/auth-guard'
 import Colors from '@/constants/Colors'
 import { useColorScheme } from '@/lib/use-color-scheme'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function TabLayout() {
   const { colorScheme } = useColorScheme()
+  const insets = useSafeAreaInsets()
 
   return (
     <AuthGuard>
@@ -14,7 +16,10 @@ export default function TabLayout() {
         screenOptions={{
           tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
           headerShown: false,
-          tabBarStyle: { height: 60 },
+          tabBarStyle: {
+            paddingBottom: insets.bottom,
+            paddingTop: 8,
+          },
           tabBarItemStyle: { gap: 6 },
         }}
       >

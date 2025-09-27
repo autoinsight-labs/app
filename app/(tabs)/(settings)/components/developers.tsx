@@ -11,6 +11,7 @@ import type { BottomSheetDefaultBackdropProps } from '@gorhom/bottom-sheet/lib/t
 import { ChevronRight, CodeXml, Github, Linkedin } from 'lucide-react-native'
 import { useCallback, useRef } from 'react'
 import { Image, Linking, Pressable, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 export function Developers() {
   const { colorScheme } = useColorScheme()
@@ -81,7 +82,10 @@ export function Developers() {
         backdropComponent={renderBackdrop}
       >
         <BottomSheetView className="flex flex-col justify-center gap-4 px-6 py-4 pb-10">
-          <View className="flex flex-col gap-4 w-full">
+          <SafeAreaView
+            className="flex flex-col gap-4 w-full"
+            edges={['bottom']}
+          >
             <Text className="text-xl font-semibold">Desenvolvedores</Text>
             <View className="flex flex-col w-full">
               {developers.map(developer => {
@@ -130,7 +134,7 @@ export function Developers() {
                 )
               })}
             </View>
-          </View>
+          </SafeAreaView>
         </BottomSheetView>
       </BottomSheetModal>
     </>
