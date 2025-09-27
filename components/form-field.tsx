@@ -28,11 +28,18 @@ export function FormField({
       <View className="flex flex-col gap-2">
         <Label
           htmlFor={htmlFor ?? label}
-          className={`${errorMsg ? 'text-destructive' : 'text-foreground'} ${!hasLabel && 'hidden'
-            }`}
+          className={`${errorMsg ? 'text-destructive' : 'text-foreground'} ${
+            !hasLabel && 'hidden'
+          }`}
         >
           {toCapital(label)}
-          {required && <Text className={`${errorMsg ? 'text-destructive' : 'text-foreground'}`}>*</Text>}
+          {required && (
+            <Text
+              className={`${errorMsg ? 'text-destructive' : 'text-foreground'}`}
+            >
+              *
+            </Text>
+          )}
         </Label>
         {children}
       </View>
