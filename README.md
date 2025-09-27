@@ -1,10 +1,10 @@
 # AutoInsight
 
-## 📱 Sobre o Projeto
+## Sobre o Projeto
 
-A **AutoInsight** é um aplicativo desenvolvido em React Native com Expo, feito para mapeamento inteligente de pátio e gestão de motos. O aplicativo foi projetado para facilitar o controle e monitoramento de frotas de motocicletas, oferecendo uma interface intuitiva para gerenciar manutenções e acompanhar informações em tempo real.
+A **AutoInsight** é um aplicativo desenvolvido em React Native com Expo, feito para mapeamento inteligente de pátio e gestão de motos. O aplicativo foi projetado para facilitar o controle e monitoramento de frotas de motocicletas, oferecendo uma interface intuitiva para gerenciar e acompanhar informações.
 
-## 👥 Equipe de Desenvolvimento
+## Equipe de Desenvolvimento
 
 | Nome | RM | E-mail | GitHub | LinkedIn |
 |------|-------|---------|---------|----------|
@@ -12,91 +12,51 @@ A **AutoInsight** é um aplicativo desenvolvido em React Native com Expo, feito 
 | Guilherme Henrique Maggiorini | RM554745 | guimaggiorini@gmail.com | [@guimaggiorini](https://github.com/guimaggiorini) | [guimaggiorini](https://linkedin.com/in/guimaggiorini/) |
 | Ian Rossato Braga | RM554989 | ian007953@gmail.com | [@iannrb](https://github.com/iannrb) | [ianrossato](https://linkedin.com/in/ianrossato/) |
 
-## 🚀 Como Executar o Projeto
+## Como Executar
 
-### Pré-requisitos
+Pré-requisitos: Node 18+, npm, Expo CLI, e Expo Go (ou emulador iOS/Android).
 
-- Node.js (versão 18 ou superior)
-- npm
-- Expo CLI (`npm install -g @expo/cli`)
-- Dispositivo móvel com Expo Go ou emulador Android/iOS
-
-### Instalação
-
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/autoinsight-labs/app.git
-   cd app
-   ```
-
-2. **Instale as dependências:**
+1) Instale dependências
    ```bash
    npm install --legacy-peer-deps
    ```
-
-3. **Inicie o projeto:**
+2) Configure variáveis de ambiente (veja abaixo)
+3) Rode o app
    ```bash
    npx expo start
    ```
 
-### Variáveis de Ambiente (Firebase)
+## Variáveis de Ambiente
 
-Configure as seguintes variáveis no ambiente:
+Crie um arquivo .env com:
 
 ```env
+# Firebase Auth
 EXPO_PUBLIC_FIREBASE_API_KEY=
 EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=
 EXPO_PUBLIC_FIREBASE_PROJECT_ID=
 EXPO_PUBLIC_FIREBASE_APP_ID=
+
+# Backend
+EXPO_PUBLIC_API_BASE_URL=http://localhost:5100
 ```
 
-## 🏗️ Arquitetura e Tecnologias
+Se não definido, o backend usa http://localhost:5100 por padrão.
 
-### Stack Principal
-- **React Native** 0.79.2
-- **Expo** 53.0.9
-- **TypeScript** 5.8.3
-- **Expo Router** 5.0.6 (navegação)
-- **NativeWind** 4.1.23 (styling)
-- **TailwindCSS** 3.4.17
+## Stack
+- React Native + Expo (Expo Router)
+- TypeScript
+- NativeWind + TailwindCSS
+- Firebase Auth
 
-## 🎯 Principais Recursos
+## Autenticação (Firebase)
+O `AuthProvider` em `lib/contexts/auth.tsx` observa o estado com `onAuthStateChanged` e expõe `user`, `isAuthenticated`, `login`, `signup`, `logout` e `updateProfile`. A inicialização (com persistência via AsyncStorage) está em `lib/firebase.ts`, e erros amigáveis em `lib/firebase-error.ts`. Telas: `app/(auth)/login.tsx` e `app/(auth)/signup.tsx`.
 
-### Interface do Usuário
-- **Tema Dinâmico:** Alternância entre claro/escuro/sistema
-- **Bottom Sheets:** Modais deslizantes para melhor UX
-- **Componentes Customizados:** Sistema de design consistente
-- **Ícones:** Lucide React Native para ícones modernos
+## Yards, Employees e Convites
+- Serviços: `lib/services/yards.ts`, `lib/services/yard-employees.ts`, `lib/services/invites.ts` (cliente HTTP em `lib/api.ts`, tipos em `lib/types.ts`).
+- Tela principal de pátio: `app/(tabs)/(yards)/index.tsx`.
+- Fluxo: o app tenta identificar automaticamente um pátio do usuário (se é dono ou membro). Se houver pátio: lista funcionários e convites pendentes do pátio; se não houver: mostra convites pessoais (por e‑mail) para aceitar/recusar. Ações de criar/editar/excluir pátio e convidar estão em bottom sheets na mesma rota.
 
-### Navegação
-- **File-based Routing:** Expo Router para navegação intuitiva
-- **Tab Navigation:** Navegação por abas principal
-- **Modal Navigation:** Modais para ações específicas
-
-### Gerenciamento de Estado
-- **Local State:** useState para estados de componente
-- **Form State:** React Hook Form para formulários
-- **Persistent State:** AsyncStorage para dados persistentes
-
-### Validação e Formulários
-- **Schema Validation:** Zod para validação robusta
-- **Real-time Feedback:** Validação em tempo real
-- **Error Handling:** Mensagens de erro contextuais
-
-## 📱 Funcionalidades do App
-
-### Tela Principal (Home)
-- Visualização de manutenção agendada
-- Informações do responsável técnico
-- Detalhes da motocicleta em serviço
-- Integração com mapas para localização
-- Status visual da manutenção
-
-### Tela de Configurações
-- **Edição de Perfil:** Formulário para alterar nome e e-mail
-- **Seleção de Tema:** Escolha entre claro, escuro ou sistema
-- **Sobre:** Informações dos desenvolvedores com links
-
-## 📄 Licença
+## Licença
 
 Este projeto foi desenvolvido para fins acadêmicos como parte do challenge da Mottu FIAP.
