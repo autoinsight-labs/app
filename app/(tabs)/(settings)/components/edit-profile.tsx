@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Text } from '@/components/ui/text'
 import Colors from '@/constants/Colors'
+import { useAuth } from '@/lib/contexts/auth'
 import { useColorScheme } from '@/lib/use-color-scheme'
 import {
   BottomSheetBackdrop,
@@ -33,11 +34,12 @@ type EditProfileSchema = z.infer<typeof editProfileSchema>
 
 export function EditProfile() {
   const { colorScheme } = useColorScheme()
+  const { user, updateProfile } = useAuth()
   const bottomSheetModalRef = useRef<BottomSheetModal>(null)
 
   const [profile, setProfile] = useState({
-    name: 'Guilherme Maggiorini',
-    email: 'guimaggiorini@gmail.com',
+    name: user?.displayName || 'Usuário',
+    email: user?.email || 'email@exemplo.com',
   })
 
   const { control, handleSubmit, reset } = useForm<EditProfileSchema>({
@@ -48,16 +50,23 @@ export function EditProfile() {
     },
   })
 
-  function onSubmit(data: EditProfileSchema) {
-    toast.success('Perfil atualizado!')
-    setProfile(data)
-    bottomSheetModalRef.current?.dismiss()
+  async function onSubmit(data: EditProfileSchema) {
+    try {
+      await updateProfile({ name: data.name, email: data.email })
+      toast.success('Perfil atualizado!')
+      setProfile(data)
+      bottomSheetModalRef.current?.dismiss()
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : 'Erro ao atualizar perfil'
+      toast.error(message)
+    }
   }
 
   const handlePresentModalPress = useCallback(() => {
-    reset()
+    reset({ name: user?.displayName || '', email: user?.email || '' })
     bottomSheetModalRef.current?.present()
-  }, [reset])
+  }, [reset, user])
 
   const renderBackdrop = useCallback(
     (props: BottomSheetDefaultBackdropProps) => (

@@ -39,6 +39,17 @@ A **AutoInsight** é um aplicativo desenvolvido em React Native com Expo, feito 
    npx expo start
    ```
 
+### Variáveis de Ambiente (Firebase)
+
+Configure as seguintes variáveis no ambiente:
+
+```env
+EXPO_PUBLIC_FIREBASE_API_KEY=
+EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN=
+EXPO_PUBLIC_FIREBASE_PROJECT_ID=
+EXPO_PUBLIC_FIREBASE_APP_ID=
+```
+
 ## 🏗️ Arquitetura e Tecnologias
 
 ### Stack Principal
