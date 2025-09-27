@@ -15,6 +15,7 @@ import { StatusBar } from 'expo-status-bar'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Platform } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Toaster } from 'sonner-native'
 
 const LIGHT_THEME: Theme = {
@@ -67,15 +68,17 @@ export default function RootLayout() {
     <GestureHandlerRootView>
       <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
         <AuthProvider>
-          <BottomSheetModalProvider>
-            <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
-            <Stack screenOptions={{ headerShown: false }} />
-            <Toaster
-              position="top-center"
-              theme={isDarkColorScheme ? 'dark' : 'light'}
-              richColors
-            />
-          </BottomSheetModalProvider>
+          <SafeAreaProvider>
+            <BottomSheetModalProvider>
+              <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
+              <Stack screenOptions={{ headerShown: false }} />
+              <Toaster
+                position="top-center"
+                theme={isDarkColorScheme ? 'dark' : 'light'}
+                richColors
+              />
+            </BottomSheetModalProvider>
+          </SafeAreaProvider>
         </AuthProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
